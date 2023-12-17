@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --primary-background: #000000;
+  --secondary-background: #3A0CA3;
+  --accent-color-1: #B5179E;
+  --accent-color-2: #7209B7;
+  --accent-color-3: #480CA8;
+  --text-color: #FEFAE0;
+  --button-hover-color: #9DB2BF;
+  --border-gradient: linear-gradient(45deg, #B5179E, #7209B7, #480CA8, #3A0CA3, #3F37C9, #4361EE, #4895EF);
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--primary-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.App {
+  text-align: center;
+}
+
+h1 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.TodoWrapper {
+  background: var(--secondary-background);
+  margin-top: 5rem;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 700px;
+  
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+  position: relative; 
+}
+
+.TodoWrapper::before,
+.TodoWrapper::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--accent-color-1),
+    var(--accent-color-2),
+    var(--accent-color-3),
+    var(--accent-color-2),
+    var(--accent-color-1)
+  );
+  border-radius: inherit;
+  animation: rotation 20s linear infinite;
+}
+
+.TodoWrapper::after {
+  filter: blur(3.5rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+.TodoForm {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.todo-input {
+  outline: none;
+  background: none;
+  border: 1px solid var(--text-color);
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 300px;
+  color: var(--text-color);
+  transition: border-color 0.3s ease; 
+}
+
+.todo-input::placeholder {
+  color: var(--text-color);
+}
+
+.todo-input:focus {
+  border-color: var(--accent-color-1); 
+}
+
+.todo-btn {
+  background: var(--accent-color-3);
+  color: #d3c8c8;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+  border-radius: 5px; 
+}
+
+.todo-btn:hover {
+  background: var(--button-hover-color);
+  color: #020202;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.Todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--accent-color-1);
+  color: var(--text-color);
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Todo:hover {
+  background-color: var(--accent-color-2); 
+}
+
+.fa-trash {
+  font-size: 1.2rem; 
+  margin-left: 0.5rem;
+}
+
+.incompleted {
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.completed {
+  color: var(--text-color);
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+}
